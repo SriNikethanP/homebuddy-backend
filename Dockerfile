@@ -10,6 +10,10 @@ COPY src src
 RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
+# Verify the JAR file exists and list its name
+RUN ls -l target/*.jar
+
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "target/*.jar"] 
+# Use the specific JAR file name
+ENTRYPOINT ["sh", "-c", "java -jar target/backend-0.0.1-SNAPSHOT.jar"] 
