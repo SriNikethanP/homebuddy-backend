@@ -3,9 +3,21 @@ services:
     name: homebuddy-backend
     env: java
     runtime: java21
-    buildCommand: "./mvnw clean package -DskipTests"
-    startCommand: "java -jar target/*.jar"
+    buildCommand: |
+      #!/bin/bash
+      # Make mvnw executable
+      chmod +x mvnw
+      # Set JAVA_HOME
+      export JAVA_HOME=/opt/render/project/src/.jdk
+      export PATH=$JAVA_HOME/bin:$PATH
+      # Build the application
+      ./mvnw clean package -DskipTests
+    startCommand: java -jar target/*.jar
     envVars:
+      - key: JAVA_HOME
+        value: /opt/render/project/src/.jdk
+      - key: PATH
+        value: /opt/render/project/src/.jdk/bin:$PATH
       - key: SPRING_PROFILES_ACTIVE
         value: prod
       - key: PORT
