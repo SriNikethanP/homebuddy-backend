@@ -20,4 +20,8 @@ services:
       - key: SPRING_DATASOURCE_USERNAME
         value: homebuddydb_user
       - key: SPRING_DATASOURCE_PASSWORD
-        value: 6PbcYOXQtKkAjSGiDr2lllH4hONSlkTx 
+        value: 6PbcYOXQtKkAjSGiDr2lllH4hONSlkTx
+      - key: SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE
+        value: 5
+      - key: SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE
+        value: 1 
